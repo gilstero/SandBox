@@ -9,8 +9,8 @@
 ###### Please download SandBox and install to computer
 ###### Upon opening you are given three options 'new world', 'load world', and 'settings'
 
-#### Settings allows changes in background color and volume
+#### "Settings" allows changes in background color and volume
 
-#### Load world will load a saved file and continue from where you left off
+#### "Load world" will load a saved file and continue from where you left off
 
-#### New world will load a new world and automatically save it when you are done
+#### "New world" will load a new world and automatically save it when you are done
