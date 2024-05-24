@@ -12,10 +12,18 @@ class Container(QMainWindow): # container is built on Q1 of the graph where both
     def __init__(self, length, height, resistance, accel):
         super(Container, self).__init__()
         self.setWindowTitle("SandBox")
+        self.resize(1000, 600) # Set geometry of the window to center of screen when loading
+        self.center()
         self.length = length
         self.height = height
         self.resistance = resistance
         self.accel = accel
+
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
 
     def checkCollisionWithContainer(self, ball):
         flag = False
