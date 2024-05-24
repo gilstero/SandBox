@@ -5,13 +5,17 @@ import sys
 import time
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-from PyQt5.QtWidgets import QDialog, QApplication, QSplashScreen
+from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
 
-class Container(): # container is built on Q1 of the graph where both x and y are positive
-    def __init__(self, length, height): 
+class Container(QMainWindow): # container is built on Q1 of the graph where both x and y are positive
+    def __init__(self, length, height, resistance, accel):
+        super(Container, self).__init__()
+        self.setWindowTitle("SandBox")
         self.length = length
         self.height = height
+        self.resistance = resistance
+        self.accel = accel
 
     def checkCollisionWithContainer(self, ball):
         flag = False
@@ -38,8 +42,8 @@ class Ball():
         self.color = (0,0,0)
         self.x = 100
         self.y = 100
-        self.xVel = 1
-        self.yVel = 1
+        self.xVel = 0
+        self.yVel = 0
     
     def velocity(self):
         '''Returns the veloctity vector,
@@ -52,9 +56,12 @@ class Ball():
         container.checkCollisionWithContainer(self)
 
 if __name__ == '__main__':
-    Ball1 = Ball()
-    mainContainer = Container(200, 200)
-    while True:
-        Ball1.increment(mainContainer)
-        print(Ball1.velocity())
-        time.sleep(.1)
+    app = QApplication([])
+    mainContainer = Container(200, 200, 0, 0)
+    mainContainer.show()
+    app.exec_()
+    # Ball1 = Ball()
+    # while True:
+    #     Ball1.increment(mainContainer)
+    #     print(Ball1.velocity())
+    #     time.sleep(.1)
