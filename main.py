@@ -3,22 +3,29 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys
 import time
+from PyQt5 import uic
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
 
+class SandboxLoader(QMainWindow):
+    def __init__(self):
+        super(SandboxLoader, self).__init__()
+        uic.loadUi("Assets/SandBox.ui", self)
+        self.show()
+
 class Container(QMainWindow): # container is built on Q1 of the graph where both x and y are positive
-    def __init__(self, length, height, resistance, accel):
+    def __init__(self, resistance, accel):
         super(Container, self).__init__()
         self.setWindowTitle("SandBox")
+        self.acceptDrops()
         self.resize(1000, 600) # Set geometry of the window to center of screen when loading
         self.center()
-        self.length = length
-        self.height = height
+        self.length = 1000
+        self.height = 600
         self.resistance = resistance
         self.accel = accel
-        SandboxSplash()
 
     def center(self):
         qr = self.frameGeometry()
@@ -64,11 +71,11 @@ class Ball():
         self.y += self.yVel
         container.checkCollisionWithContainer(self)
 
-class SandboxSplash():
-    pass
 
 if __name__ == '__main__':
-    app = QApplication([])
-    mainContainer = Container(200, 200, 0, 0)
-    mainContainer.show()
+    app = QApplication(sys.argv)
+    loader = SandboxLoader()
+
+    # mainContainer = Container(0, 0)
+    # mainContainer.show()
     app.exec_()
