@@ -18,6 +18,7 @@ class Container(QMainWindow): # container is built on Q1 of the graph where both
         self.height = height
         self.resistance = resistance
         self.accel = accel
+        SandboxSplash()
 
     def center(self):
         qr = self.frameGeometry()
@@ -63,13 +64,11 @@ class Ball():
         self.y += self.yVel
         container.checkCollisionWithContainer(self)
 
+class SandboxSplash():
+    pass
+
 if __name__ == '__main__':
     app = QApplication([])
     mainContainer = Container(200, 200, 0, 0)
     mainContainer.show()
     app.exec_()
-    # Ball1 = Ball()
-    # while True:
-    #     Ball1.increment(mainContainer)
-    #     print(Ball1.velocity())
-    #     time.sleep(.1)
